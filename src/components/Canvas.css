@@ -1,0 +1,9 @@
+.Grid {
+  width: 800px;
+  height: 600px;
+  background: white;
+  user-select: none;
+  position: relative;
+  border: 1px solid black;
+  overflow: hidden;
+}
