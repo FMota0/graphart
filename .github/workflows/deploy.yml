@@ -1,0 +1,33 @@
+name: Deploy
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build-and-deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Yarn Install
+        run: yarn install
+      - name: Build react
+        run: yarn build
+        env:
+          CI: false
+      - name: Add 200.html
+        run: |
+          mv build/index.html build/200.html
+      - name: Deploy to kimpl.surge.sh
+        uses: dswistowski/surge-sh-action@v1
+        with:
+          domain: 'https://graphart.surge.sh'
+          project: './build'
+          login: ${{secrets.SURGE_LOGIN}}
+          token: ${{secrets.SURGE_TOKEN}}
