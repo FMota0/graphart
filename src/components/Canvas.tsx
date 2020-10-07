@@ -144,7 +144,7 @@ export function Canvas () {
 
   const changeMode = (newMode: Modes) => {
     setSelectedNode(undefined);
-    if (newMode === "move") {
+    if (newMode !== "move") {
       setNodesToMove([]);
       setMovePosition(undefined);
     }
