@@ -2,58 +2,12 @@ import React, { useState, useRef } from "react";
 import { pick, keys, concat, remove, find, includes, cloneDeep } from "lodash";
 import "./Canvas.css";
 
-interface Coordinates {
-  top: number;
-  left: number;
-  width: number;
-  height: number;
-}
-
-interface BoxPreview {
-  initialMouse: {
-    clientX: number;
-    clientY: number;
-  };
-  gridPos: {
-    top: number;
-    left: number;
-  };
-  box: Coordinates;
-}
-
-type Shape = "square" | "circle";
-
-interface Node extends Coordinates {
-  id: string;
-  shape: Shape;
-  color: string;
-}
-
-interface Dict<V> {
-  [k: string]: V
-}
-
-interface Edge {
-  u: string;
-  v: string;
-}
-
-type Edges = Array<Edge>;
-
-interface MovePosition {
-  initialMouse: {
-    clientX: number;
-    clientY: number;
-  };
-  nodes: Dict<Node>;
-}
-
 /**
  * returns whether A is inside B
  * @param A 
  * @param B 
  */
-function isInside(A: Coordinates, B: Coordinates): boolean {
+function isInside(A: CanvasCoordinate, B: CanvasCoordinate): boolean {
   return (
     B.top <= A.top &&
     B.left <= A.left &&
@@ -104,7 +58,7 @@ interface Line {
   right: number;
 }
 
-function createLine(U: Node, V: Node): Line {
+function createLine(U: CanvasNode, V: CanvasNode): Line {
   const topU = U.top + U.width / 2, leftU = U.left + U.width / 2;
   const topV = V.top + V.width / 2, leftV = V.left + V.width / 2;
   return {
@@ -124,7 +78,7 @@ export function Canvas () {
     undefined
   );
 
-  const [ nodes, setNodes ] = useState<Dict<Node>>({});
+  const [ nodes, setNodes ] = useState<Dict<CanvasNode>>({});
 
   const [ selectedNode, setSelectedNode ] = useState<string | undefined>(
     undefined
