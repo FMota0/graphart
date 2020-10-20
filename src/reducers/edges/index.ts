@@ -1,9 +1,9 @@
-import { concat, find, remove } from "lodash";
-import events from "../canvasEvents";
+import { concat, filter, find } from "lodash";
+import ACTIONS from "../actions";
 
 export default function edgesReducer(state: CanvasAppState, action: CanvasAppAction) {
   switch (action.type) {
-    case events.NODE_CLICK: {
+    case ACTIONS.NODE_CLICK: {
       if (state.mode === "draw" && state.selectedNode) {
         let u = state.selectedNode, v = action.payload.node;
         if (u > v)
@@ -12,8 +12,7 @@ export default function edgesReducer(state: CanvasAppState, action: CanvasAppAct
         const { edges } = state;
         const equality = (e: Edge) => e.u === edge.u && e.v === edge.v;
         if (!!find(edges, equality)) {
-          remove(edges, equality);
-          return edges;
+          return filter(edges, e => !equality(e));
         } else {
           return concat(edges, [edge]);
         }

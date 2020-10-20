@@ -1,10 +1,10 @@
 import { cloneDeep } from "lodash";
 import { generateId } from "../../utils";
-import events from "../canvasEvents";
+import ACTIONS from "../actions";
 
 export default function nodesReducer(state: CanvasAppState, action: CanvasAppAction): Dict<CanvasNode> {
   switch (action.type) {
-    case events.CANVAS_MOUSE_MOVE: {
+    case ACTIONS.CANVAS_MOUSE_MOVE: {
       if (state.movePosition) {
         const e = action.payload.event;
         const deltaX = e.clientX - state.movePosition.initialMouse.clientX;
@@ -18,7 +18,7 @@ export default function nodesReducer(state: CanvasAppState, action: CanvasAppAct
       }
       return state.nodes;
     }
-    case events.CANVAS_MOUSE_UP: {
+    case ACTIONS.CANVAS_MOUSE_UP: {
       if (state.mode === "draw" && state.boxPreview) {
         const id = generateId();
         return {
@@ -33,7 +33,7 @@ export default function nodesReducer(state: CanvasAppState, action: CanvasAppAct
       }
       return state.nodes;
     }
-    case events.CHANGE_NODE_SHAPE: {
+    case ACTIONS.CHANGE_NODE_SHAPE: {
       const { selectedNode, selectedShape } = action.payload;
       return {
         ...state.nodes,
@@ -43,7 +43,7 @@ export default function nodesReducer(state: CanvasAppState, action: CanvasAppAct
         }
       };
     }
-    case events.CHANGE_NODE_COLOR: {
+    case ACTIONS.CHANGE_NODE_COLOR: {
       const { selectedNode, selectedColor } = action.payload;
       return {
         ...state.nodes,

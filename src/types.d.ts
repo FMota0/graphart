@@ -66,3 +66,5 @@ type CanvasAppAction = {
   type: string;
   payload: any; // TODO: enumerate
 }
+
+type Modes = "draw" | "select" | "move" | "edit";
