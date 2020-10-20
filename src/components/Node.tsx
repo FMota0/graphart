@@ -22,6 +22,7 @@ export default function Node({ id }: { id: string }) {
 
   let borderColor = "";
 
+  // TODO: refactor this
   if (mode === "draw") {
     if (id === selectedNode) {
       borderColor = " green";
@@ -34,9 +35,13 @@ export default function Node({ id }: { id: string }) {
     } else if (includes(nodesToMove, id)) {
       borderColor = " red";
     }
-  } else {
+  } else if(mode === "move") {
     if (includes(nodesToMove, id)) {
       borderColor = " red";
+    }
+  } else {
+    if (id === selectedNode) {
+      borderColor = " green";
     }
   }
 

@@ -8,6 +8,7 @@ import ModeEditor from "./ModeEditor";
 import { canvasDefaultState, AppContext } from "./context";
 import reducer from "../reducers";
 import ACTIONS from "../reducers/actions";
+import { WIDTH, HEIGHT } from "../constants";
 
 import "./Canvas.css";
 
@@ -27,49 +28,51 @@ export function Canvas () {
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>
-      <div className="pt2">
+      <div className="pt2 center" style={{ width: WIDTH }}>
         <ModeEditor/>
-        <div className="flex justify-center">
-          <div
-            ref={gridRef}
-            className="Grid"
-            onMouseDown={e => {
-              e.preventDefault();
-              e.persist();
-              dispatch({
-                type: ACTIONS.CANVAS_MOUSE_DOWN,
-                payload: {
-                  event: e,
-                },
-              });
-            }}
-            onMouseMove={e => {
-              e.preventDefault();
-              e.persist();
-              dispatch({
-                type: ACTIONS.CANVAS_MOUSE_MOVE,
-                payload: {
-                  event: e,
-                },
-              });
-            }}
-            onMouseUp={e => {
-              e.preventDefault();
-              e.persist();
-              dispatch({
-                type: ACTIONS.CANVAS_MOUSE_UP,
-                payload: {
-                  event: e,
-                },
-              });
-            }}
-          >
-            <Nodes/>
-            <Edges/>
-            <BoxPreview/>
-          </div>
-          <NodeEditor/>
+        <div
+          ref={gridRef}
+          className="Grid"
+          style={{
+            width: WIDTH,
+            height: HEIGHT,
+          }}
+          onMouseDown={e => {
+            e.preventDefault();
+            e.persist();
+            dispatch({
+              type: ACTIONS.CANVAS_MOUSE_DOWN,
+              payload: {
+                event: e,
+              },
+            });
+          }}
+          onMouseMove={e => {
+            e.preventDefault();
+            e.persist();
+            dispatch({
+              type: ACTIONS.CANVAS_MOUSE_MOVE,
+              payload: {
+                event: e,
+              },
+            });
+          }}
+          onMouseUp={e => {
+            e.preventDefault();
+            e.persist();
+            dispatch({
+              type: ACTIONS.CANVAS_MOUSE_UP,
+              payload: {
+                event: e,
+              },
+            });
+          }}
+        >
+          <Nodes/>
+          <Edges/>
+          <BoxPreview/>
         </div>
+        <NodeEditor/>
       </div>
     </AppContext.Provider>
   )
