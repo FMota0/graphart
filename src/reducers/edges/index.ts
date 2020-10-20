@@ -1,9 +1,9 @@
 import { concat, find, remove } from "lodash";
-import events from "../canvasEvents";
+import ACTIONS from "../actions";
 
 export default function edgesReducer(state: CanvasAppState, action: CanvasAppAction) {
   switch (action.type) {
-    case events.NODE_CLICK: {
+    case ACTIONS.NODE_CLICK: {
       if (state.mode === "draw" && state.selectedNode) {
         let u = state.selectedNode, v = action.payload.node;
         if (u > v)

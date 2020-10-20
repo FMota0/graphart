@@ -1,9 +1,9 @@
 import { pick } from "lodash";
-import events from "../canvasEvents";
+import ACTIONS from "../actions";
 
 export default function movePositionReducer(state: CanvasAppState, action: CanvasAppAction) {
   switch (action.type) {
-    case events.CANVAS_MOUSE_DOWN: {
+    case ACTIONS.CANVAS_MOUSE_DOWN: {
       if (state.mode === "move") {
         return {
           nodes: state.nodes,
@@ -12,7 +12,7 @@ export default function movePositionReducer(state: CanvasAppState, action: Canva
       }
       return state.movePosition;
     }
-    case events.CANVAS_MOUSE_UP:
+    case ACTIONS.CANVAS_MOUSE_UP:
       return undefined;
     default:
       return state.movePosition;

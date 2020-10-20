@@ -3,7 +3,7 @@ import { keys, includes } from "lodash";
 
 import { isInside, createLine } from "../canvas-utils";
 import reducer from "../reducers";
-import canvasEvents from "../reducers/canvasEvents";
+import ACTIONS from "../reducers/actions";
 
 import "./Canvas.css";
 
@@ -38,7 +38,7 @@ export function Canvas () {
 
   const changeMode = (newMode: Modes) => {
     dispatch({
-      type: canvasEvents.CHANGE_MODE,
+      type: ACTIONS.CHANGE_MODE,
       payload: {
         mode: newMode,
       },
@@ -47,7 +47,7 @@ export function Canvas () {
 
   useEffect(() => {
     dispatch({
-      type: canvasEvents.SET_GRID_REF,
+      type: ACTIONS.SET_GRID_REF,
       payload: {
         gridRef,
       },
@@ -79,7 +79,7 @@ export function Canvas () {
             e.preventDefault();
             e.persist();
             dispatch({
-              type: canvasEvents.CANVAS_MOUSE_DOWN,
+              type: ACTIONS.CANVAS_MOUSE_DOWN,
               payload: {
                 event: e,
               },
@@ -89,7 +89,7 @@ export function Canvas () {
             e.preventDefault();
             e.persist();
             dispatch({
-              type: canvasEvents.CANVAS_MOUSE_MOVE,
+              type: ACTIONS.CANVAS_MOUSE_MOVE,
               payload: {
                 event: e,
               },
@@ -99,7 +99,7 @@ export function Canvas () {
             e.preventDefault();
             e.persist();
             dispatch({
-              type: canvasEvents.CANVAS_MOUSE_UP,
+              type: ACTIONS.CANVAS_MOUSE_UP,
               payload: {
                 event: e,
               },
@@ -150,7 +150,7 @@ export function Canvas () {
                   }}
                   onClick={() => {
                     dispatch({
-                      type: canvasEvents.NODE_CLICK,
+                      type: ACTIONS.NODE_CLICK,
                       payload: {
                         node: id,
                       },
@@ -187,7 +187,7 @@ export function Canvas () {
             <>
               <select value={nodes[selectedNode].shape} onChange={e => {
                 dispatch({
-                  type: canvasEvents.CHANGE_NODE_SHAPE,
+                  type: ACTIONS.CHANGE_NODE_SHAPE,
                   payload: {
                     selectedNode,
                     selectedShape: e.target.value,
@@ -199,7 +199,7 @@ export function Canvas () {
               </select>
               <select value={nodes[selectedNode].color} onChange={e => {
                 dispatch({
-                  type: canvasEvents.CHANGE_NODE_COLOR,
+                  type: ACTIONS.CHANGE_NODE_COLOR,
                   payload: {
                     selectedNode,
                     selectedColor: e.target.value,

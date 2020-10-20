@@ -1,12 +1,12 @@
-import events from "../canvasEvents";
+import ACTIONS from "../actions";
 
 export default function selectedNodeReducer(state: CanvasAppState, action: CanvasAppAction) {
   switch(action.type) {
-    case events.CANVAS_MOUSE_DOWN:
+    case ACTIONS.CANVAS_MOUSE_DOWN:
       return undefined;
-    case events.CHANGE_MODE:
+    case ACTIONS.CHANGE_MODE:
       return undefined;
-    case events.NODE_CLICK: {
+    case ACTIONS.NODE_CLICK: {
       if (!state.selectedNode) {
         return action.payload.node;
       }
