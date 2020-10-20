@@ -20,16 +20,18 @@ export default function nodesReducer(state: CanvasAppState, action: CanvasAppAct
     }
     case ACTIONS.CANVAS_MOUSE_UP: {
       if (state.mode === "draw" && state.boxPreview) {
-        const id = generateId();
-        return {
-          ...state.nodes,
-          [id]: {
-            ...state.boxPreview.box,
-            id,
-            shape: "circle",
-            color: "light-silver",
-          }
-        };
+        if(state.boxPreview.box.width > 0){
+          const id = generateId();
+          return {
+            ...state.nodes,
+            [id]: {
+              ...state.boxPreview.box,
+              id,
+              shape: "circle",
+              color: "light-silver",
+            }
+          };
+        }
       }
       return state.nodes;
     }
