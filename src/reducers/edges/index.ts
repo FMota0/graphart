@@ -1,4 +1,4 @@
-import { concat, find, remove } from "lodash";
+import { concat, filter, find } from "lodash";
 import ACTIONS from "../actions";
 
 export default function edgesReducer(state: CanvasAppState, action: CanvasAppAction) {
@@ -12,8 +12,7 @@ export default function edgesReducer(state: CanvasAppState, action: CanvasAppAct
         const { edges } = state;
         const equality = (e: Edge) => e.u === edge.u && e.v === edge.v;
         if (!!find(edges, equality)) {
-          remove(edges, equality);
-          return edges;
+          return filter(edges, e => !equality(e));
         } else {
           return concat(edges, [edge]);
         }
