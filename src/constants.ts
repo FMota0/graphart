@@ -3,11 +3,11 @@ export const WIDTH: number = 1200;
 
 export const NODE_COLORS: Array<{color: string, name: string}> = [
   {
-    color: "ligth-silver",
+    color: "light-silver",
     name: "Light silver",
   },
   {
-    color: "ligth-blue",
+    color: "light-blue",
     name: "Light blue",
   },
   {
