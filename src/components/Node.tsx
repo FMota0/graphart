@@ -18,7 +18,7 @@ export default function Node({ id }: { id: string }) {
   } = useAppContext()
 
 
-  const { left, top, height, width, shape, color } = nodes[id];
+  const { left, top, height, width, shape, color, label } = nodes[id];
 
   let borderColor = "";
 
@@ -48,7 +48,7 @@ export default function Node({ id }: { id: string }) {
   return (
     <div
       key={id}
-      className={`absolute bg-${color}`}
+      className={`absolute bg-${color} dt center`}
       style={{
         left,
         top,
@@ -72,6 +72,9 @@ export default function Node({ id }: { id: string }) {
         })
       }}
       >
+        <div className="dtc v-mid tc">
+          <p>{label}</p>
+        </div>
     </div>
   )
 }
