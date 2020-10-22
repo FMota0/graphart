@@ -70,6 +70,10 @@ export function Canvas () {
           <Edges/>
           <BoxPreview/>
         </div>
+        {/* Remember to give credits for icons */}
+        <div>
+          <p>Ícones feitos por <a href="https://www.flaticon.com/br/autores/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/br/" title="Flaticon"> www.flaticon.com</a> </p>
+        </div>
       </div>
     </AppContext.Provider>
   )

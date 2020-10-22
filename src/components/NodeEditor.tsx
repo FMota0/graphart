@@ -18,7 +18,7 @@ export default function NodeEditor() {
     return null;
   
   return (
-    <div className="flex">
+    <div className="flex pb2">
       <select value={nodes[selectedNode].shape} onChange={e => {
         dispatch({
           type: ACTIONS.CHANGE_NODE_SHAPE,
