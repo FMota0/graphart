@@ -19,6 +19,8 @@ export default function boxPreviewReducer(state: CanvasAppState, action: CanvasA
     case ACTIONS.CANVAS_MOUSE_UP: {
       return undefined;
     }
+    case ACTIONS.RESET:
+      return undefined;
     default:
       return state.boxPreview;
   }

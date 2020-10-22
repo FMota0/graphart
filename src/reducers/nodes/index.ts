@@ -61,6 +61,8 @@ export default function nodesReducer(state: CanvasAppState, action: CanvasAppAct
         }
       };
     }
+    case ACTIONS.RESET:
+      return {};
     default:
       return state.nodes;
   }
