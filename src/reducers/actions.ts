@@ -8,4 +8,5 @@ export default {
   NODE_CLICK: 'NODE_CLICK',
   SET_GRID_REF: 'SET_GRID_REF',
   RESET: 'RESET',
+  CHANGE_LABEL: 'CHANGE_LABEL',
 };

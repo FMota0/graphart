@@ -23,6 +23,7 @@ interface CanvasNode extends CanvasCoordinate {
   id: string;
   shape: Shape;
   color: string;
+  label: string;
 }
 
 interface Dict<V> {

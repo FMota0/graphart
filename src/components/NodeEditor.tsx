@@ -49,6 +49,18 @@ export default function NodeEditor() {
           ))
         }
       </select>
+      <input 
+        value={nodes[selectedNode].label}
+        onChange={e => {
+          dispatch({
+            type: ACTIONS.CHANGE_LABEL,
+            payload: {
+              selectedNode,
+              newLabel: e.target.value,
+            },
+          });
+        }}
+      />
     </div>
   )
 }

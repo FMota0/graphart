@@ -1,6 +1,8 @@
 import { cloneDeep, clamp } from "lodash";
+
 import { generateId } from "../../utils";
 import ACTIONS from "../actions";
+import { NODE_MINIMUM_SIZE } from "../../constants";
 
 export default function nodesReducer(state: CanvasAppState, action: CanvasAppAction): Dict<CanvasNode> {
   switch (action.type) {
@@ -28,6 +30,7 @@ export default function nodesReducer(state: CanvasAppState, action: CanvasAppAct
       if (state.mode === "draw" && state.boxPreview) {
         if(state.boxPreview.box.width > 0){
           const id = generateId();
+          const size = state.boxPreview.box.width;
           return {
             ...state.nodes,
             [id]: {
@@ -35,6 +38,9 @@ export default function nodesReducer(state: CanvasAppState, action: CanvasAppAct
               id,
               shape: "circle",
               color: "light-silver",
+              label: id,
+              width: Math.max(size, NODE_MINIMUM_SIZE),
+              height: Math.max(size, NODE_MINIMUM_SIZE),
             }
           };
         }
@@ -48,7 +54,7 @@ export default function nodesReducer(state: CanvasAppState, action: CanvasAppAct
         [selectedNode]: {
           ...state.nodes[selectedNode],
           shape: selectedShape as Shape,
-        }
+        },
       };
     }
     case ACTIONS.CHANGE_NODE_COLOR: {
@@ -58,7 +64,17 @@ export default function nodesReducer(state: CanvasAppState, action: CanvasAppAct
         [selectedNode]: {
           ...state.nodes[selectedNode],
           color: selectedColor,
-        }
+        },
+      };
+    }
+    case ACTIONS.CHANGE_LABEL: {
+      const { selectedNode, newLabel } = action.payload;
+      return {
+        ...state.nodes,
+        [selectedNode]: {
+          ...state.nodes[selectedNode],
+          label: newLabel,
+        },
       };
     }
     case ACTIONS.RESET:
