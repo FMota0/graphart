@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useAppContext } from "./context";
+import NodeEditor from "./NodeEditor";
 import ACTIONS from "../reducers/actions";
 
 export default function ModeEditor() {
@@ -25,18 +26,21 @@ export default function ModeEditor() {
 
   return (
     <div>
-      <div className="center tc" style={{ width: "800px" }}>
-          <div>
-            <p className="f2"> Mode: {mode} </p>
-          </div>
+      <div className="center tc">
+        <div>
+          <p className="f2"> Mode: {mode} </p>
         </div>
-        <div className="flex justify-between center pl3 pr3 pb3" style={{ width: "800px" }}>
+      </div>
+      <div className="flex">
+        <div className="flex">
           <button onClick={() => changeMode("draw")}> Draw </button>
           <button onClick={() => changeMode("select")}> Select </button>
           <button onClick={() => changeMode("move")}> Move </button>
           <button onClick={() => changeMode("edit")}> Edit </button>
           <button onClick={() => reset()}> Reset </button>
         </div>
+        <NodeEditor/>
+      </div>
     </div>
   )
 }

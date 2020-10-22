@@ -1,5 +1,5 @@
 export const HEIGHT: number = 800;
-export const WIDTH: number = 1200;
+export const WIDTH: string = '100%';
 
 export const NODE_COLORS: Array<{color: string, name: string}> = [
   {

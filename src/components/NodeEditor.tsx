@@ -18,7 +18,7 @@ export default function NodeEditor() {
     return null;
   
   return (
-    <div className="pa2 flex justify-between">
+    <div className="flex">
       <select value={nodes[selectedNode].shape} onChange={e => {
         dispatch({
           type: ACTIONS.CHANGE_NODE_SHAPE,

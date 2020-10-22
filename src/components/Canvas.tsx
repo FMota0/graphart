@@ -2,13 +2,12 @@ import React, { useRef, useReducer, useEffect } from "react";
 
 import BoxPreview from "./BoxPreview";
 import Edges from "./Edges";
-import NodeEditor from "./NodeEditor";
 import Nodes from "./Nodes";
 import ModeEditor from "./ModeEditor";
 import { canvasDefaultState, AppContext } from "./context";
 import reducer from "../reducers";
 import ACTIONS from "../reducers/actions";
-import { WIDTH, HEIGHT } from "../constants";
+import { HEIGHT } from "../constants";
 
 import "./Canvas.css";
 
@@ -28,13 +27,12 @@ export function Canvas () {
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>
-      <div className="pt2 center" style={{ width: WIDTH }}>
+      <div className="pt2 center w-100 pl3 pr3">
         <ModeEditor/>
         <div
           ref={gridRef}
-          className="Grid"
+          className="Grid w-100"
           style={{
-            width: WIDTH,
             height: HEIGHT,
           }}
           onMouseDown={e => {
@@ -72,7 +70,6 @@ export function Canvas () {
           <Edges/>
           <BoxPreview/>
         </div>
-        <NodeEditor/>
       </div>
     </AppContext.Provider>
   )

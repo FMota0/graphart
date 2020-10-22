@@ -1,4 +1,4 @@
-import { cloneDeep } from "lodash";
+import { cloneDeep, clamp } from "lodash";
 import { generateId } from "../../utils";
 import ACTIONS from "../actions";
 
@@ -9,10 +9,16 @@ export default function nodesReducer(state: CanvasAppState, action: CanvasAppAct
         const e = action.payload.event;
         const deltaX = e.clientX - state.movePosition.initialMouse.clientX;
         const deltaY = e.clientY - state.movePosition.initialMouse.clientY;
+        let fixedDeltaX = deltaX;
+        let fixedDeltaY = deltaY;
         const updatedNodes = cloneDeep(state.movePosition.nodes);
         state.nodesToMove.forEach(id => {
-          updatedNodes[id].top += deltaY;
-          updatedNodes[id].left += deltaX;
+          fixedDeltaX = clamp(fixedDeltaX, -updatedNodes[id].left, state.gridRef!.current!.getBoundingClientRect().width - updatedNodes[id].left - updatedNodes[id].width);
+          fixedDeltaY = clamp(fixedDeltaY, -updatedNodes[id].top, state.gridRef!.current!.getBoundingClientRect().height - updatedNodes[id].top - updatedNodes[id].height);
+        });
+        state.nodesToMove.forEach(id => {
+          updatedNodes[id].top += fixedDeltaY;
+          updatedNodes[id].left += fixedDeltaX;
         });
         return updatedNodes;
       }
