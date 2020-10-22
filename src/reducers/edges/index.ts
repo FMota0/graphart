@@ -19,6 +19,8 @@ export default function edgesReducer(state: CanvasAppState, action: CanvasAppAct
       }
       return state.edges;
     }
+    case ACTIONS.RESET:
+      return []
     default:
       return state.edges;
   }

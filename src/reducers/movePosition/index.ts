@@ -14,6 +14,8 @@ export default function movePositionReducer(state: CanvasAppState, action: Canva
     }
     case ACTIONS.CANVAS_MOUSE_UP:
       return undefined;
+    case ACTIONS.RESET:
+      return undefined;
     default:
       return state.movePosition;
   }

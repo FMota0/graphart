@@ -5,7 +5,7 @@ import ACTIONS from "../actions";
 export default function boxPreviewReducer(state: CanvasAppState, action: CanvasAppAction) {
   switch (action.type) {
     case ACTIONS.CANVAS_MOUSE_DOWN: {
-      if (state.mode !== "move" && state.gridRef) {
+      if (state.mode !== "move" && state.mode !== "edit" && state.gridRef) {
         return createBoxPreview(action.payload.event, state.gridRef);
       }
       return state.boxPreview;
@@ -19,6 +19,8 @@ export default function boxPreviewReducer(state: CanvasAppState, action: CanvasA
     case ACTIONS.CANVAS_MOUSE_UP: {
       return undefined;
     }
+    case ACTIONS.RESET:
+      return undefined;
     default:
       return state.boxPreview;
   }
