@@ -54,7 +54,7 @@ export default function Node({ id }: { id: string }) {
       if (currentContext.current === id){
         realColor = "green";
       } else if(includes(currentContext.visited, id)){
-        realColor = "purple";
+        realColor = "moon-gray";
       } else if(includes(currentContext.queue, id)) {
         realColor = "gold";
       } else {
