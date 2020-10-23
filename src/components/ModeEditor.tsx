@@ -43,7 +43,7 @@ export default function ModeEditor() {
             width={ICON_SIZE}
             height={ICON_SIZE} 
             onClick={() => changeMode("draw")}
-            className={`outline pa1 ${mode === "draw" ? "bg-light-blue" : ""}`}
+            className={`outline pa1 pointer ${mode === "draw" ? "bg-light-blue" : ""}`}
             title="Draw"
           />
         </div>
@@ -52,7 +52,7 @@ export default function ModeEditor() {
             width={ICON_SIZE}
             height={ICON_SIZE}
             onClick={() => changeMode("select")}
-            className={`outline pa1 ${mode === "select" ? "bg-light-blue" : ""}`}
+            className={`outline pa1 pointer ${mode === "select" ? "bg-light-blue" : ""}`}
             title="Select"
           />
         </div>
@@ -61,7 +61,7 @@ export default function ModeEditor() {
             width={ICON_SIZE}
             height={ICON_SIZE}
             onClick={() => changeMode("move")}
-            className={`outline pa1 ${mode === "move" ? "bg-light-blue" : ""}`}
+            className={`outline pa1 pointer ${mode === "move" ? "bg-light-blue" : ""}`}
             title="Move"
           />
         </div>
@@ -69,7 +69,7 @@ export default function ModeEditor() {
           <EditIcon
             width={ICON_SIZE} height={ICON_SIZE}
             onClick={() => changeMode("edit")}
-            className={`outline pa1 ${mode === "edit" ? "bg-light-blue" : ""}`}
+            className={`outline pa1 pointer ${mode === "edit" ? "bg-light-blue" : ""}`}
             title="Edit"
           />
         </div>
@@ -78,7 +78,7 @@ export default function ModeEditor() {
             width={ICON_SIZE}
             height={ICON_SIZE}
             onClick={reset}
-            className={`outline pa1`}
+            className={`outline pa1 pointer`}
             title="Reset"
           />
         </div>

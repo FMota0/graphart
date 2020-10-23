@@ -72,7 +72,7 @@ export default function Node({ id }: { id: string }) {
         })
       }}
       >
-        <div className="dtc v-mid tc">
+        <div className="dtc v-mid tc pointer">
           <p>{label}</p>
         </div>
     </div>
