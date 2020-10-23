@@ -9,6 +9,12 @@ export const canvasDefaultState: CanvasAppState = {
   movePosition: undefined,
   edges: [],
   gridRef: undefined,
+  execution: {
+    algorithm: "bfs",
+    time: 0,
+    isPlaying: false,
+    context: [],
+  },
 }
 
 export const AppContext = createContext<{

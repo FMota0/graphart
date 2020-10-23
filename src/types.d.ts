@@ -61,6 +61,12 @@ type CanvasAppState = {
   movePosition: MovePosition | undefined;
   edges: Edges;
   gridRef: import("react").RefObject<HTMLDivElement> | undefined;
+  execution: {
+    algorithm: string;
+    time: number;
+    isPlaying: boolean;
+    context: any[]; // TODO: enumerate
+  };
 }
 
 type CanvasAppAction = {

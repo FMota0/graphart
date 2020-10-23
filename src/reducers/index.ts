@@ -6,6 +6,7 @@ import movePositionReducer from "./movePosition";
 import nodesReducer from "./nodes";
 import nodesToMoveReducer from "./nodesToMove";
 import selectedNodeReducer from "./selectedNode";
+import executionReducer from "./execution";
 
 export default function reducer(state: CanvasAppState, action: CanvasAppAction): CanvasAppState {
   return {
@@ -17,5 +18,6 @@ export default function reducer(state: CanvasAppState, action: CanvasAppAction):
     nodes: nodesReducer(state, action),
     nodesToMove: nodesToMoveReducer(state, action),
     selectedNode: selectedNodeReducer(state, action),
+    execution: executionReducer(state, action),
   };
 }
