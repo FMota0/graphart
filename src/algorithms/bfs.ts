@@ -3,14 +3,13 @@ import { tail, includes } from "lodash";
 export default function buildFramesBFS(edges: Edges, start: string) {
   let queue: string[] = [start];
   let visited: string[] = [];
-  const frames = [
-    {
+  const frames: Array<{ queue: string[], visited: string[], current: string}> = [];
+  while(queue.length > 0){
+    frames.push({
       queue,
       visited,
       current: "",
-    }
-  ];
-  while(queue.length > 0){
+    });
     const current = queue[0];
     queue = tail(queue);
     visited = [...visited, current];
