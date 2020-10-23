@@ -3,7 +3,7 @@ import React, { useRef, useReducer, useEffect } from "react";
 import BoxPreview from "./BoxPreview";
 import Edges from "./Edges";
 import Nodes from "./Nodes";
-import ModeEditor from "./ModeEditor";
+import Toolbar from "./Toolbar";
 import { canvasDefaultState, AppContext } from "./context";
 import reducer from "../reducers";
 import ACTIONS from "../reducers/actions";
@@ -49,7 +49,7 @@ export function Canvas () {
   return (
     <AppContext.Provider value={{ state, dispatch }}>
       <div className="pt2 center w-100 pl3 pr3">
-        <ModeEditor/>
+        <Toolbar/>
         <div
           ref={gridRef}
           className="Grid w-100"

@@ -68,4 +68,4 @@ type CanvasAppAction = {
   payload?: any; // TODO: enumerate
 }
 
-type Modes = "draw" | "select" | "move" | "edit";
+type Modes = "draw" | "select" | "move" | "edit" | "execute";
