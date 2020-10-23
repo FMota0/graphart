@@ -61,6 +61,12 @@ type CanvasAppState = {
   movePosition: MovePosition | undefined;
   edges: Edges;
   gridRef: import("react").RefObject<HTMLDivElement> | undefined;
+  execution: {
+    algorithm: string;
+    time: number;
+    isPlaying: boolean;
+    context: any[]; // TODO: enumerate
+  };
 }
 
 type CanvasAppAction = {
@@ -68,4 +74,4 @@ type CanvasAppAction = {
   payload?: any; // TODO: enumerate
 }
 
-type Modes = "draw" | "select" | "move" | "edit";
+type Modes = "draw" | "select" | "move" | "edit" | "execute";

@@ -1,6 +1,7 @@
 export const HEIGHT: number = 800;
 export const WIDTH: string = '100%';
 export const NODE_MINIMUM_SIZE: number = 70;
+export const ICON_SIZE: number = 30;
 
 export const NODE_COLORS: Array<{color: string, name: string}> = [
   {

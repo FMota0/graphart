@@ -13,6 +13,7 @@ export default function Node({ id }: { id: string }) {
       boxPreview,
       nodesToMove,
       mode,
+      execution,
     },
     dispatch,
   } = useAppContext()
@@ -21,6 +22,7 @@ export default function Node({ id }: { id: string }) {
   const { left, top, height, width, shape, color, label } = nodes[id];
 
   let borderColor = "";
+  let realColor = color;
 
   // TODO: refactor this
   if (mode === "draw") {
@@ -39,16 +41,32 @@ export default function Node({ id }: { id: string }) {
     if (includes(nodesToMove, id)) {
       borderColor = " red";
     }
-  } else {
+  } else if(mode === "edit") {
     if (id === selectedNode) {
       borderColor = " green";
+    }
+  } else if(mode === "execute") {
+    if (id === selectedNode) {
+      borderColor = " green";
+    }
+    if (execution.context && execution.time < execution.context.length && execution.time >= 0) {
+      const currentContext = execution.context[execution.time];
+      if (currentContext.current === id){
+        realColor = "green";
+      } else if(includes(currentContext.visited, id)){
+        realColor = "moon-gray";
+      } else if(includes(currentContext.queue, id)) {
+        realColor = "gold";
+      } else {
+        realColor = "gray";
+      }
     }
   }
 
   return (
     <div
       key={id}
-      className={`absolute bg-${color} dt center`}
+      className={`absolute bg-${realColor} dt center`}
       style={{
         left,
         top,
@@ -72,7 +90,7 @@ export default function Node({ id }: { id: string }) {
         })
       }}
       >
-        <div className="dtc v-mid tc">
+        <div className="dtc v-mid tc pointer">
           <p>{label}</p>
         </div>
     </div>

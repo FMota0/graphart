@@ -3,7 +3,7 @@ import React, { useRef, useReducer, useEffect } from "react";
 import BoxPreview from "./BoxPreview";
 import Edges from "./Edges";
 import Nodes from "./Nodes";
-import ModeEditor from "./ModeEditor";
+import Toolbar from "./Toolbar";
 import { canvasDefaultState, AppContext } from "./context";
 import reducer from "../reducers";
 import ACTIONS from "../reducers/actions";
@@ -11,8 +11,29 @@ import { HEIGHT } from "../constants";
 
 import "./Canvas.css";
 
+const STATE_CANVAS_KEY = 'graphart:state';
+
 export function Canvas () {
-  const [ state, dispatch ] = useReducer(reducer, canvasDefaultState);
+  // TODO: refactor localStorage handling
+  let storageState = null;
+  try {
+    const storageContent = localStorage.getItem(STATE_CANVAS_KEY);
+    if (storageContent)
+      storageState = JSON.parse(storageContent);
+  } catch (e) {
+    console.log(`[warn] Failed to load ${STATE_CANVAS_KEY}`);
+  }
+
+  const [ state, dispatch ] = useReducer(reducer, storageState || canvasDefaultState);
+
+  try {
+    localStorage.setItem(STATE_CANVAS_KEY, JSON.stringify({
+      ...state,
+      gridRef: undefined,
+    }));
+  } catch (e) {
+    console.log(`[warn] Failed to store ${STATE_CANVAS_KEY}`);
+  }
 
   const gridRef = useRef<HTMLDivElement>(null);
 
@@ -28,7 +49,7 @@ export function Canvas () {
   return (
     <AppContext.Provider value={{ state, dispatch }}>
       <div className="pt2 center w-100 pl3 pr3">
-        <ModeEditor/>
+        <Toolbar/>
         <div
           ref={gridRef}
           className="Grid w-100"
