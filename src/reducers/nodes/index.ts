@@ -77,6 +77,14 @@ export default function nodesReducer(state: CanvasAppState, action: CanvasAppAct
         },
       };
     }
+    case ACTIONS.DELETE_NODE: {
+      if (state.selectedNode) {
+        const nodes = {...state.nodes};
+        delete nodes[state.selectedNode];
+        return nodes;
+      }
+      return state.nodes;
+    }
     case ACTIONS.RESET:
       return {};
     default:

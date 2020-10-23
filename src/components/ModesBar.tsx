@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useAppContext } from "./context";
 import ACTIONS from "../reducers/actions";
@@ -10,6 +10,13 @@ import { ReactComponent as MoveSelectionIcon } from "../icons/moveSelection.svg"
 import { ReactComponent as EditIcon } from "../icons/edit.svg";
 import { ReactComponent as ExecuteIcon } from "../icons/execute.svg";
 import { ReactComponent as ResetIcon } from "../icons/reset.svg";
+
+const MODE_KEYS: {[k: string]: string} = {
+  d: "draw",
+  s: "select",
+  m: "move",
+  e: "execute",
+};
 
 export default function ModesBar() {
   const {
@@ -33,6 +40,24 @@ export default function ModesBar() {
       type: ACTIONS.RESET,
     });
   };
+
+  useEffect(() => {
+    window.addEventListener('keydown', e => {
+      if (MODE_KEYS[e.key]) {
+        dispatch({
+          type: ACTIONS.CHANGE_MODE,
+          payload: {
+            mode: MODE_KEYS[e.key],
+          },
+        });
+      }
+      if (e.key === "Backspace" || e.key === "Delete") {
+        dispatch({
+          type: ACTIONS.DELETE_NODE,
+        });
+      }
+    });
+  }, [dispatch]);
 
   return (
     <div className="flex">

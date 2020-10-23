@@ -29,6 +29,22 @@ export default function executionReducer(state: CanvasAppState, action: CanvasAp
         time: Math.max(state.execution.time - 1, 0),
       };
     }
+    case ACTIONS.RESET: {
+      return {
+        algorithm: "bfs",
+        time: 0,
+        isPlaying: false,
+        context: [],
+      };
+    }
+    case ACTIONS.DELETE_NODE: {
+      return {
+        algorithm: "bfs",
+        time: 0,
+        isPlaying: false,
+        context: [],
+      };
+    }
     default:
       return state.execution;
   }

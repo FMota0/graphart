@@ -19,6 +19,12 @@ export default function edgesReducer(state: CanvasAppState, action: CanvasAppAct
       }
       return state.edges;
     }
+    case ACTIONS.DELETE_NODE:{
+      if (state.selectedNode) {
+        return filter(state.edges, e => e.u !== state.selectedNode && e.v !== state.selectedNode);
+      }
+      return state.edges;
+    }
     case ACTIONS.RESET:
       return []
     default:

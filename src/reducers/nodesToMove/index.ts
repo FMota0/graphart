@@ -13,6 +13,8 @@ export default function nodesToMoveReducer(state: CanvasAppState, action: Canvas
     }
     case ACTIONS.RESET:
       return [];
+    case ACTIONS.DELETE_NODE:
+      return [];
     default:
       return state.nodesToMove;
   }

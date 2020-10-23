@@ -19,6 +19,8 @@ export default function selectedNodeReducer(state: CanvasAppState, action: Canva
       return undefined;
     case ACTIONS.RESET:
       return undefined;
+    case ACTIONS.DELETE_NODE:
+      return undefined;
     default:
       return state.selectedNode;
   }
